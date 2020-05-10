@@ -22,7 +22,6 @@
 
 from app import app
 from flask import Flask, request, render_template
-import json
 import requests
 import re
 import csv
