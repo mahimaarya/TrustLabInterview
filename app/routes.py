@@ -24,33 +24,27 @@ import json
 import requests
 import re
 import csv
-import pandas as pd
 
 @app.route('/')
-@app.route('/index')
 def form():
+    # initial screen should have a form for a YT URL submission
     return render_template('form.html')
 
 @app.route('/', methods=['POST'])
 def my_form_post():
+    # when the URL is submitted, allow the user to review the comments
     URL = request.form['text']
-    html = requests.get(URL).text
     try:
+        # except is triggered when there isn't a valid URL
+        html = requests.get(URL).text
+        # except is triggered when the URL isn't for a YT video
         vidTitle = getVidTitle(html)
+        channelName = getChannel(html)
+        comments = getComments()
     except:
-        return '''
-            <html>
-                <head>
-                    <title>Home Page - Microblog</title>
-                </head>
-                <body>
-                    <h1>Please hit the back button and input a valid YouTube URL.</h1>
-                </body>
-            </html>''' # change to in-line check that it's a valid YouTube link
-    channelName = getChannel(html)
-    comments = getComments()
-    # turn this into a template
-    return render_template('analysis.html') # pass in the comments DF
+        # change to in-line check that it's a valid YouTube link
+        return render_template('error.html')
+    return render_template('review.html', comments = comments) # pass in the comments DF
 
 def getVidTitle(html):
     # uses regex to find the video title
@@ -62,18 +56,22 @@ def getChannel(html):
     result = re.search("""<span class="stat attribution"><span class="" >(.*)</span></span>""", html)
     return(result.group(1))
 
-def makeDataFrame(filename):
-    data = pd.read_csv(filename)
-    df = pd.DataFrame(data)
-    return df
+def make2DListFromCSV(filename):
+    data = []
+    with open(filename, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            data.append(row)
+    return data[1:] # skip the header row
 
 def getComments():
     # comments are not included in the HTML request
     # using the YouTube API to get comment data requires approval in advance
+    # YT API info: https://developers.google.com/youtube/v3/quickstart/python
     # for the purposes of an mvp, a csv from kaggle is being hardcoded in
     # (https://www.kaggle.com/datasnaek/youtube#UScomments.csv)
-    commentsDf = makeDataFrame('UScomments.csv')
-    return commentsDf
+    comments = make2DListFromCSV('UScomments.csv')[:10] # cutting off at 10 for demo
+    return comments
 
 
 

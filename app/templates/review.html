@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <title>YouTube Comment Reviewer</title>
+    </head>
+    <body>
+        <div class="page-header" style="margin-top:3%; text-align: center;">
+            <h1> Review Comments </h1>
+        </div>
+        <!-- Content Row -->
+        <div class="container">
+            {% for comments_batched in comments|batch(3) %}
+                <div class="row" style="margin:3%;">
+                {% for comment in comments_batched %}
+                <div class="card" class="col-sm" style="width:30%;">
+                    <div class="card-body">
+                        <!-- the comment is a the 1st index -->
+                        <p class="card-text"> {{comment[1]}} </p>
+                        <p class="card-text"> Number of likes: {{comment[2]}} </p>
+                        <p class="card-text"> Number of replies: {{comment[3]}} </p>
+                        <!-- would need to pass a commentID -->
+                        <button type="button" class="btn btn-success">Mark as Good</button>
+                        <!-- would need to pass a commentID -->
+                        <button type="button" class="btn btn-warning" style="margin-top:1%">Submit for Review</button>
+                        <a href="#" class="card-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+
+<!-- 
+    <script type="text/javascript">
+        // shortening the length of comments for demo purposes
+        var tenComments = comments.slice(0,10);
+        for (i=0; i<=comments.length; i++) {
+            document.getElementById("commentDisplay").innerHTML += "<div class='card' style='width: 18rem;'>";
+            document.getElementById("commentDisplay").innerHTML += "<div class='card-body'>";
+            document.getElementById("commentDisplay").innerHTML += "<p class='card-text'>" + i[1] + "</p>";
+            document.getElementById("commentDisplay").innerHTML += "<a href='#' class='card-link'>Mark as Good</a></div>"; // would need to pass a commentID
+            document.getElementById("commentDisplay").innerHTML += "<a href='#' class='card-link'>Submit for Review</a>"; // would need to pass a commentID
+            ddocument.getElementById("commentDisplay").innerHTML += "</div>";
+        }
+    </script> -->
+</html>
