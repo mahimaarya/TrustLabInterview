@@ -1,11 +1,12 @@
 # main app code
+# By Mahima Arya
 
 # things to do
-# 1. make form template nicer
+# 1. make form template nicer ✅
 #     - use bootstrap
 #     - explain what the page is for
 #     - add a title
-# 2. make results page
+# 2. make results page ✅
 #     - show the vid title and channel name at the top
 #     - show comments and have a button to submit to trust lab
 #     - make comments that are chosen disappear
@@ -16,7 +17,8 @@
 #     - explain the subtask i chose
 #     - explain what installs need to be done
 #     - explain how to run the code
-#     - explain future work
+#     - explain future work (db)
+#     - desc of actual vision(chrome extension)
 
 from app import app
 from flask import Flask, request, render_template
@@ -44,7 +46,8 @@ def my_form_post():
     except:
         # change to in-line check that it's a valid YouTube link
         return render_template('error.html')
-    return render_template('review.html', comments = comments) # pass in the comments DF
+    return render_template('review.html', vidTitle = vidTitle, 
+                            channelName = channelName, comments = comments)
 
 def getVidTitle(html):
     # uses regex to find the video title

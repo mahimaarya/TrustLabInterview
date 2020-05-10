@@ -4,6 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Mahima Arya">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -11,9 +12,17 @@
         <title>YouTube Comment Reviewer</title>
     </head>
     <body>
-        <div class="form-group">
+        <div class="page-header" style="margin-top:3%; text-align: center;">
+            <h1> Review Comments </h1>
+        </div>
+        <p style="padding-left: 20%; padding-right: 20%;">
+            Contribute to your community by reporting misinformation and hate speech
+            content. <b>Submit the link of a YouTube video below</b>, and you'll be able to
+            sift through the comments.
+        </p>
+        <div class="form-group" style="margin-top:3%; text-align: center;">
             <form method="POST">
-                <input name="text">
+                <input name="text" placeholder="YouTube Link">
                 <input type="submit" class="btn btn-primary">
             </form>
         </div>
