@@ -1,7 +1,7 @@
 # main app code
 # By Mahima Arya
 
-# things to do
+# things to do (@todo)
 # 1. make form template nicer ✅
 #     - use bootstrap
 #     - explain what the page is for
@@ -43,7 +43,7 @@ def my_form_post():
         channelName = getChannel(html)
         comments = getComments()
     except:
-        # change to in-line check that it's a valid YouTube link
+        # @todo: change to in-line check that it's a valid YouTube link
         return render_template('error.html')
     return render_template('review.html', vidTitle = vidTitle, 
                             channelName = channelName, comments = comments)
@@ -68,9 +68,9 @@ def make2DListFromCSV(filename):
 
 def getComments():
     # comments are not included in the HTML request
-    # using the YouTube API to get comment data requires approval in advance
+    # @todo: use the YouTube API (requires approval in advance)
     # YT API info: https://developers.google.com/youtube/v3/quickstart/python
-    # for the purposes of an mvp, a csv from kaggle is being hardcoded in
+    # for the purposes of an mvp, a csv from kaggle is  hardcoded in
     # (https://www.kaggle.com/datasnaek/youtube#UScomments.csv)
     comments = make2DListFromCSV('UScomments.csv')[:10] # cutting off at 10 for demo
     return comments
