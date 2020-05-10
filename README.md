@@ -1,4 +1,4 @@
-# TrustLabInterview
+# TrustLabInterview (Mahima Arya)
 
 ### Sub-Problem
 I chose to create a way for users to report misinformation and hate speech content to trustlab.
@@ -44,4 +44,4 @@ The website should now be running! On my computer, it was hosted on http://127.0
 
 Thank you!
 
-\- Mahima Arya
+\- Mahima Arya (mahimaa@andrew.cmu.edu)
